@@ -2,7 +2,7 @@
 
 Bring vehicle data from a Bluetooth LE OBD-II adapter into Home Assistant. EMMA polls an ELM-compatible adapter, discovers sensors through MQTT, and keeps the last valid values available while the vehicle is parked. The project started with a Veepeak OBDCheck BLE in a Fiat Ducato camper.
 
-[Download and release notes](https://github.com/migendi/ha-ble-obd-bridge/releases/tag/v0.1.3) · [Report an issue](https://github.com/migendi/ha-ble-obd-bridge/issues) · [Sponsor the project](https://github.com/sponsors/migendi)
+[Download and release notes](https://github.com/Omasprintfarm-de/ha-ble-obd-bridge/releases/tag/v0.1.3) · [Report an issue](https://github.com/Omasprintfarm-de/ha-ble-obd-bridge/issues) · [Sponsor the project](https://github.com/sponsors/Omasprintfarm-de)
 
 ## Ducato dashboard in Home Assistant
 
@@ -38,11 +38,11 @@ The engine view shows additional values from the same setup, including intake ai
 | `ffe0` | Profile selection verified in simulation. |
 | `nordic_uart` | Profile selection verified in simulation. |
 
-The public beta passed its [ARM64 image build and ELM simulation tests](https://github.com/migendi/ha-ble-obd-bridge/actions/runs/45048255081). A fresh vehicle-data test of the public package is still pending.
+The public beta passed its [ARM64 image build and ELM simulation tests](https://github.com/Omasprintfarm-de/ha-ble-obd-bridge/actions/runs/45048255081). A fresh vehicle-data test of the public package is still pending.
 
 ## Installation
 
-1. In Home Assistant, open **Settings → Apps → App store**. Open the three-dot menu, choose **Repositories**, and add `https://github.com/migendi/ha-ble-obd-bridge`.
+1. In Home Assistant, open **Settings → Apps → App store**. Open the three-dot menu, choose **Repositories**, and add `https://github.com/Omasprintfarm-de/ha-ble-obd-bridge`.
 2. Install **EMMA Veepeak OBD**. In its **Configuration** tab, enter your adapter's Bluetooth address in `ble_address` and leave `ble_profile` on `auto`.
 3. Set up MQTT. With the Supervisor-provided MQTT service available, leave `mqtt_username` empty. For a separately configured broker, enter its host, port and credentials.
 4. Plug in the adapter, switch on the ignition while the vehicle is parked, and disconnect any phone app or head unit using the adapter. Start EMMA and open its **Log** tab.
@@ -75,11 +75,11 @@ The flight recorder writes to `/share/OBD_Captures/obd_flight.jsonl`. It rotates
 
 Run `python -m unittest discover -s tests -v` from the repository root. The tests cover BLE profile selection, simulated ELM responses, timeout handling, the command allowlist and MQTT/cache behavior. The [ARM64 GitHub Actions workflow](.github/workflows/arm64.yml) also builds the Home Assistant image.
 
-If you try a different adapter, include its model, vehicle model year, BLE profile and the measurements you verified in an [issue](https://github.com/migendi/ha-ble-obd-bridge/issues). You can support documentation and hardware testing through [GitHub Sponsors](https://github.com/sponsors/migendi).
+If you try a different adapter, include its model, vehicle model year, BLE profile and the measurements you verified in an [issue](https://github.com/Omasprintfarm-de/ha-ble-obd-bridge/issues). You can support documentation and hardware testing through [GitHub Sponsors](https://github.com/sponsors/Omasprintfarm-de).
 
 ### Help verify Fiat Ducato Gen 9 AdBlue readings
 
-AdBlue level for the Ducato Gen 9 (model year 2025 onward) is open for validation. If your diagnostic app already shows a plausible level, [submit an AdBlue test report](https://github.com/migendi/ha-ble-obd-bridge/issues/new?template=ducato-adblue.md). If you can, capture the same reading at two different fill levels, such as before and after a normal refill. Include the command and raw reply if your diagnostic app exposes them, plus the value shown by the app and any corresponding dashboard reading.
+AdBlue level for the Ducato Gen 9 (model year 2025 onward) is open for validation. If your diagnostic app already shows a plausible level, [submit an AdBlue test report](https://github.com/Omasprintfarm-de/ha-ble-obd-bridge/issues/new?template=ducato-adblue.md). If you can, capture the same reading at two different fill levels, such as before and after a normal refill. Include the command and raw reply if your diagnostic app exposes them, plus the value shown by the app and any corresponding dashboard reading.
 
 A report with the raw data and a repeatable change gives us a candidate to check. An independent result from a second vehicle or tool helps distinguish a reusable decoder from a vehicle-specific mapping. Share only the relevant excerpts with vehicle identifiers removed.
 
