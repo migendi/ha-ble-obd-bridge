@@ -1,0 +1,24 @@
+name: ARM64 build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ELM simulation tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Build the Home Assistant app
+        run: docker build --tag emma-ble-obd:ci emma_veepeak_obd
+      - name: Verify the image architecture and Python dependencies
+        run: |
+          test "$(docker image inspect --format '{{.Architecture}}' emma-ble-obd:ci)" = arm64
+          docker run --rm --entrypoint python3 emma-ble-obd:ci -c 'import bleak, paho.mqtt.client; import py_compile; py_compile.compile("/app/veepeak.py", doraise=True)'
