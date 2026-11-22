@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+seed_last_values.json
+last_values.json
+fuel_last.json
+*.jsonl
+*.jsonl.*
+.env
+OBD_Captures/
